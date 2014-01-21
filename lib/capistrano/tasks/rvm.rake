@@ -41,9 +41,8 @@ namespace :rvm do
   end
 end
 
-Capistrano::DSL.stages.each do |stage|
-  after stage, 'rvm:hook'
-  after stage, 'rvm:check'
+namespace :deploy do
+  after :starting, 'rvm:hook'
 end
 
 namespace :load do
