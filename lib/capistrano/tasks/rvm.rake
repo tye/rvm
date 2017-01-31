@@ -4,15 +4,17 @@ RVM_USER_PATH = "~/.rvm"
 namespace :rvm do
   desc "Prints the RVM and Ruby version on the target host"
   task :check do
-    on roles(:all) do
-      puts capture(:rvm, "version")
-      puts capture(:rvm, "current")
-      puts capture(:ruby, "--version")
+    on roles(fetch(:rvm_roles, :all)) do
+      if fetch(:log_level) == :debug
+        puts capture(:rvm, "version")
+        puts capture(:rvm, "current")
+        puts capture(:ruby, "--version")
+      end
     end
   end
 
   task :hook do
-    on roles(:all) do
+    on roles(fetch(:rvm_roles, :all)) do
       rvm_path = fetch(:rvm_custom_path)
       rvm_path ||= case fetch(:rvm_type)
       when :auto

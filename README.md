@@ -6,6 +6,8 @@ RVM support for Capistrano v3:
 
 **If you use this integration with capistrano-rails, please ensure that you have `capistrano-bundler >= 1.1.0`.**
 
+If you want solution with RVM/rubies installer included, give a try to [rvm1-capistrano3](https://github.com/rvm/rvm1-capistrano3).
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -64,12 +66,16 @@ or
 
     set :rvm_ruby_version, '2.0.0@mygemset'
 
-
 ### Custom RVM path: `:rvm_custom_path`
 
 If you have a custom RVM setup with a different path then expected, you have
 to define a custom RVM path to tell capistrano where it is.
 
+### Custom Roles: `:rvm_roles`
+
+If you want to restrict RVM usage to a subset of roles, you may set `:rvm_roles`:
+
+    set :rvm_roles, [:app, :web]
 
 ## Restrictions
 
